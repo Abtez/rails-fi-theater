@@ -1,6 +1,6 @@
 class ProductionsController < ApplicationController
     def index
-        render json: Production.all, status: :ok
+        render json: Production.all, status: :ok, except: [:created_at, :updated_at], methods: [:title_director]
     end
     
     def show
