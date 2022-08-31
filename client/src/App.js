@@ -7,13 +7,13 @@ function App() {
   const [error, setError] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3000/productions")
+    fetch("/productions")
     .then(res => res.json())
     .then(data => setProduction(data))
   }, [])
 
   function addProduction(prod){
-    fetch("http://localhost:3000/productions",{
+    fetch("/productions",{
       method: "POST",
       headers: {
         'content-type': 'application/json'
@@ -32,7 +32,7 @@ function App() {
   }
 
   function deleteProduction(prod){
-    fetch(`http://localhost:3000/productions/${prod.id}`,{
+    fetch(`/productions/${prod.id}`,{
       method: "DELETE",
       headers: {
         'content-type': 'application/json'
