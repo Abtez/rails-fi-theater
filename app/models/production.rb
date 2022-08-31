@@ -4,7 +4,6 @@ class Production < ApplicationRecord
     validates :title, presence: true
     validates(:director, {:length => {:minimum => 5}})
     validates :title, :uniqueness => true
-    validates :budget, length: {in: 400..1200}
     def title_director
         "#{title} : #{director}"
     end
