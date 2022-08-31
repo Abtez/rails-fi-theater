@@ -12,4 +12,15 @@ class ProductionsController < ApplicationController
             render json: {error: "Not found"}, status: :not_found
         end
     end
+    
+    def create
+        production = Production.create(production_params)
+        render json: production, status: :created
+    end
+
+    private
+
+    def production_params
+        params.permit(:title, :genre, :budget, :image, :director, :ongoing)
+    end
 end
