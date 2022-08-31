@@ -1,4 +1,7 @@
 class ProductionsController < ApplicationController
+
+rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
+
     def index
         render json: Production.all, status: :ok, except: [:created_at, :updated_at], methods: [:title_director]
     end
@@ -14,7 +17,7 @@ class ProductionsController < ApplicationController
     end
     
     def create
-        production = Production.create(production_params)
+        production = Production.create!(production_params)
         render json: production, status: :created
     end
     
@@ -45,5 +48,9 @@ class ProductionsController < ApplicationController
 
     def production_params
         params.permit(:title, :genre, :budget, :image, :director, :ongoing)
+    end
+
+    def handle_blank_field(invalid)
+        render json: {error: invalid.record.errors}, status: :unprocessable_entity
     end
 end
