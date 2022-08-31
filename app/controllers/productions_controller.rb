@@ -17,6 +17,17 @@ class ProductionsController < ApplicationController
         production = Production.create(production_params)
         render json: production, status: :created
     end
+    
+    def update
+        production = Production.find_by(id: params[:id])
+        
+        if production
+            production.update(production_params)
+            render json: production, status: :accepted
+        else
+            render json: {error: "production not found"}
+        end
+    end
 
     private
 
