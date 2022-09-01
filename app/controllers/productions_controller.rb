@@ -15,6 +15,11 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
             render json: {error: "Not found"}, status: :not_found
         end
     end
+
+    def summary
+        production = Production.find(params[:id])
+        render json: production, serializer: ProductionSerializer
+    end
     
     def create
         production = Production.create!(production_params)

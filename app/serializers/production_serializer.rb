@@ -1,3 +1,7 @@
 class ProductionSerializer < ActiveModel::Serializer
-  attributes :title, :budget, :genre, :director, :image, :ongoing
+  attributes :summary
+
+  def summary
+    "The title is #{self.object.title} and is directed by #{self.object.director}"
+  end
 end
