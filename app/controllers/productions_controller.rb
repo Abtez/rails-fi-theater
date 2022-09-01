@@ -3,7 +3,7 @@ class ProductionsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
 
     def index
-        render json: Production.all, status: :ok, except: [:created_at, :updated_at], methods: [:title_director]
+        render json: Production.all, status: :ok
     end
     
     def show
