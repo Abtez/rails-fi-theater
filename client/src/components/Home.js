@@ -1,6 +1,6 @@
 import Post from "./Post"
 
-export default function Home({production, addProduction, error, deleteProduction}){
+export default function Home({production, addProduction, error, deleteProduction, addToSession}){
     return(
         <>
         <h1>production</h1>
@@ -10,7 +10,8 @@ export default function Home({production, addProduction, error, deleteProduction
                     return <li key={item.id}>
                     {item.title}
 
-                    <button onClick={() => {deleteProduction(item)}} type="button">Delete</button>
+                    <button key={item.id} onClick={() => {deleteProduction(item)}} type="button">Delete</button>
+                    <button key={item.id} onClick={() => {addToSession()}} type="button">Session</button>
                     </li>
                 })
             }

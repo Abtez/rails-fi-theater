@@ -42,9 +42,16 @@ function App() {
     .then(data => window.location.reload())
   }
 
+  function addToSession(){
+    fetch('/add_session')
+    .then(res => res.json())
+    .then(console.log)
+  }
+
   return (
     <div className="App">
-      <Home deleteProduction={deleteProduction} error={error} addProduction={addProduction} production={production} />
+      <Home deleteProduction={deleteProduction} error={error} addProduction={addProduction} production={production}
+      addToSession={addToSession} />
     </div>
   );
 }

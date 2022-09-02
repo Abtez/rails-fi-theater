@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get "/productions/:id/summary", to: "productions#summary"
+  get "/add_session", to: "sessions#add_session"
 end
