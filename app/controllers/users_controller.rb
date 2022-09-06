@@ -16,14 +16,29 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
     end
 
     def create
-        user = User.create!(user_params)
-        render json: user, status: :created
+        user = User.create(user_params)
+        if user.valid?
+            render json: user, status: :created
+        else
+            render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+        end
+    end
+
+    def update
+        user = User.find_by(id: params[:id])
+        
+        if user
+            user.update(user_params)
+            render json: user, status: :accepted
+        else
+            render json: {error: "user not found"}
+        end
     end
 
     private
 
     def user_params
-        params.permit(:username, :email, :password)
+        params.permit(:username, :email, :password, :password_confirmation)
     end
 
     def handle_blank_field(invalid)

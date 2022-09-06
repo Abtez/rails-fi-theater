@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import {Route, Routes, useNavigate} from "react-router-dom"
 import Login from "./components/Login"
 import Nav from './components/Nav';
+import Register from './components/Register';
 
 function App() {
   const [production, setProduction] = useState([])
@@ -82,6 +83,7 @@ function App() {
           addToSession={addToSession} />} />
 
         <Route exact path='/login' element={<Login onLog={onLog} />} />
+        <Route exact path='/register' element={<Register />} />
 
       </Routes>
 
