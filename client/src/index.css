@@ -20,6 +20,10 @@ h1{
   text-transform: uppercase;
 }
 
+h3{
+  color: white;
+}
+
 li{
   list-style-type: none;
   font-size: 50px;
@@ -43,6 +47,22 @@ input{
   flex-direction: row;
 }
 
+.nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  
+}
 
+.nav > li{
+  font-size: 23px;
+  padding: 10px;
+  text-decoration: underline;
+}
+
+.active{
+  color: green;
+}
 
 

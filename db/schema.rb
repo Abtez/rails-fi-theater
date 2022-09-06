@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_31_142245) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_05_080330) do
   create_table "crew_members", force: :cascade do |t|
     t.string "name"
     t.string "job_title"
@@ -28,6 +28,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_31_142245) do
     t.string "image"
     t.string "director"
     t.boolean "ongoing"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
