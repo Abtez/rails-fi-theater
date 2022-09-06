@@ -2,6 +2,9 @@ class ProductionsController < ApplicationController
 
 rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
 
+    before_action :authorize
+    skip_before_action :authorize, only: [:index]
+
     def index
         render json: Production.all, status: :ok
     end
@@ -57,5 +60,9 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
 
     def handle_blank_field(invalid)
         render json: {error: invalid.record.errors}, status: :unprocessable_entity
+    end
+
+    def authorize
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
     end
 end
